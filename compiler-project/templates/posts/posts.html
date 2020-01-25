@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %} 
+   
+    <div class="box-parent">
+        {% if posts %}
+          {% for p in posts %}
+            <div class="post-in">
+              <div class="card box-1-2">
+                <div class="card-body">
+                  <a class="card-user">{{ p.creadted_date | timesince }} ago</a>
+                  <span class="badge badge-pill badge-dark">{{ p.tag }}</span>
+              <h4 class="card-title">{{ p.title }}</h4>
+              <p class="card-text" >
+                {{ p.text }}
+              </p>
+              <a href="{% url 'post' p.id %}" class="card-link">Continue...</a>
+            </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Posts Available</p>
+          </div>
+    
+        {% endif %}
+       
+  </div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+  <br>
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+
+  <div class="box-parent">
+    {% if posts %}
+      {% for p in posts %}
+        <div class="post-in">
+          <div class="card box-1-2">
+            <div class="card-body">
+              <a class="card-user">{{ p.creadted_date | timesince}} ago</a>
+              <span class="badge badge-pill badge-dark">{{ p.tag }}</span>
+          <h4 class="card-title">{{ p.title }}</h4>
+          <p class="card-text">
+            {{ p.text }}
+          </p>
+          <a href="{% url 'post' p.id %}" class="card-link">Continue...</a>
+        </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="col-md-12">
+        <p>No Posts Available</p>
+      </div>
+
+    {% endif %}
+   
+</div>
+
+  <section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fas fa-desktop fa-4x mr-4"></i>
+          <hr>
+          <h3>Front end</h3>
+          <p>The front end analyzes the source code to build an internal representation of the program, called the 
+            intermediate representation (IR).</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-stream fa-4x mr-4"></i>
+          <hr>
+          <h3>Middle end</h3>
+          <p>The middle end, also known as optimizer, performs optimizations on the intermediate representation in order 
+            to improve the performance and the quality of the produced machine code.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-microchip fa-4x mr-4"></i>
+          <hr>
+          <h3>Back end</h3>
+          <p>The back end is responsible for the CPU architecture specific optimizations and for code generation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
